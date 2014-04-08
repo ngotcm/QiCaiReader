@@ -1,0 +1,32 @@
+{
+  "name": "QiCaiReader",
+  "version": "0.0.1",
+  "description": "Discuz bbs simple and clean reader for mobile devices.",
+  "main": "app.js",
+  "bin": {
+    "QiCai": "server.js"
+  },
+  "dependencies": {
+    "connect": "^2.14.4",
+    "crawlit": "^0.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ngotcm/QiCaiReader.git"
+  },
+  "keywords": [
+    "qicai",
+    "discuz",
+    "reader"
+  ],
+  "author": "Inaction",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ngotcm/QiCaiReader/issues"
+  },
+  "homepage": "https://github.com/ngotcm/QiCaiReader"
+}

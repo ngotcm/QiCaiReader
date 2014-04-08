@@ -1,0 +1,4 @@
+node_modules/
+run/
+deploy.sh
+config.local.js
