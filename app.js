@@ -9,28 +9,28 @@
 (function () {
   "use strict";
 
+  var logger = require('crawlit/lib/logger').getLogger('info');
 //Add config to global.config
   require('./config/config.js');
   try {
     require('./config.local.js');
   } catch (e) {
-    console.log('No local config, using default');
+    logger.log('No local config, using default');
   }
 
   var path = require('path');
   var url = require('url');
   var fs = require('fs');
   var qicai = require('crawlit/lib/plugins/qicai');
-  var logger = require('crawlit/lib/logger').getLogger('info');
 
 
 //Override configuration.
 //config.crawlOptions.working_root_path = path.join(__dirname, '../run/qicai');
 
-  var domCrawler = require('crawlit').domCrawler;
+  var crawler = require('crawlit').crawler;
 
-  domCrawler.init();
-  domCrawler.crawl(config.crawlOptions.page);
+  crawler.init();
+  crawler.crawl(config.crawlOptions.page);
 
   var ROOT_DIR = path.join(__dirname, config.crawlOptions.working_root_path, config.crawlOptions.host, 'forum');
   fs.readdir(
@@ -42,7 +42,7 @@
 
         //get last page to update
         files.forEach(function (file) {
-          logger.debug('test file:', file, 'test result=',test.test(file)); 
+          logger.debug('test file:', file, 'test result=',test.test(file));
           if (test.test(file)) {
             var page = parseInt(file.split('-')[2], 10);
             if (page > pageLast) {
@@ -59,15 +59,13 @@
 
         logger.info('last:',last, 'need update:', needUpdateLastPageQueue.length);
 
-        
-        domCrawler.update(last);
+
+        crawler.update(last);
         for(var i=1; i<=6; i++){
           var lastSix = 'thread-50247-' + (pageLast - i) + '-1.html';
           logger.debug('add lastSix:',lastSix);
-          domCrawler.update(lastSix); 
+          crawler.update(lastSix);
         }
-        //fix it
-        pageLast = 1561;
 
         qicai.watchPage(last, function (href, hrefText) {
           logger.info('Found last page', href, hrefText);
