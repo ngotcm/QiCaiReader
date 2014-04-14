@@ -6,11 +6,10 @@
  *      Config of this nocancer app.
  */
 
+var path = require('path');
 var config = {
   appName: 'QiCaiCrawler',
-  version: '0.1.0',
   port: '1231', 
-  appDomain: 'localhost',
   maxMemoryUsage: 500
 };
 
@@ -18,12 +17,12 @@ config.crawlOptions = {
   maxConnections: 1,
   maxRetryCount: 3, 
   requestTimeout: 30 * 1000,
-  savePoint: 50, //save data every 50 rui finished.
   recursive: true,
   working_root_path: 'run/qicai2',
   inputEncoding : 'gbk',
   page : 'http://www.ngotcm.com/forum/thread-50247-1-1.html',
-  Host : 'www.ngotcm.com',
+  host : 'www.ngotcm.com',
+  template: path.join(__dirname, '../template/index.html'),
   resourceParser: require('crawlit/lib/plugins/qicai')
 };
 

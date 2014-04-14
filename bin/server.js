@@ -20,7 +20,7 @@ var fs = require('fs');
 
 // global variables
 //get static root from config settings. 
-var archivePath = path.join(__dirname, '../', config.crawlOptions.working_root_path, config.crawlOptions.Host);
+var archivePath = path.join(__dirname, '../', config.crawlOptions.working_root_path, config.crawlOptions.host);
 var ROOT_PATH = path.join(__dirname, '../', config.crawlOptions.working_root_path);
 console.log('Working path:', archivePath);
 console.log('ROOT_PATH:',ROOT_PATH);
@@ -71,7 +71,7 @@ webServer.use(function (req, res) {
   console.error('url 404:', req.url);
   res.statusCode = 404;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('URI : "' + req.url + '" NOT crawled from ' + config.crawlOptions.Host);
+  res.end('URI : "' + req.url + '" NOT crawled from ' + config.crawlOptions.host);
 });
 
 //start server

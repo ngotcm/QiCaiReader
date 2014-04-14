@@ -7,8 +7,8 @@
     "QiCai": "server.js"
   },
   "dependencies": {
-    "connect": "^2.14.4",
-    "crawlit": "^0.1.4"
+    "connect": "^2.x",
+    "crawlit": "^0.1.5"
   },
   "devDependencies": {},
   "scripts": {

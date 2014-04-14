@@ -1,4 +1,5 @@
 node_modules/
+.idea/
 run/
 deploy.sh
 config.local.js
