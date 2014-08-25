@@ -9,13 +9,13 @@
 var path = require('path');
 var config = {
   appName: 'QiCaiCrawler',
-  port: '1231', 
+  port: '1231',
   maxMemoryUsage: 500
 };
 
 config.crawlOptions = {
   maxConnections: 1,
-  maxRetryCount: 3, 
+  maxRetryCount: 3,
   requestTimeout: 30 * 1000,
   recursive: true,
   working_root_path: 'run/qicai2',
@@ -23,7 +23,7 @@ config.crawlOptions = {
   page : 'http://www.ngotcm.com/forum/thread-50247-1-1.html',
   host : 'www.ngotcm.com',
   template: path.join(__dirname, '../template/index.html'),
-  resourceParser: require('crawlit/lib/plugins/qicai')
+  resourceParser: require('../qicaiRules.js')
 };
 
 //Default client http request options

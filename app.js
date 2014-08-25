@@ -21,7 +21,7 @@
   var path = require('path');
   var url = require('url');
   var fs = require('fs');
-  var qicai = require('crawlit/lib/plugins/qicai');
+  var qicai = require('./qicaiRules.js');
 
 
 //Override configuration.
@@ -42,7 +42,7 @@
 
         //get last page to update
         files.forEach(function (file) {
-          logger.debug('test file:', file, 'test result=',test.test(file));
+          logger.debug('test file:', file, 'test result=', test.test(file));
           if (test.test(file)) {
             var page = parseInt(file.split('-')[2], 10);
             if (page > pageLast) {
@@ -57,21 +57,23 @@
           }
         });
 
-        logger.info('last:',last, 'need update:', needUpdateLastPageQueue.length);
+        logger.info('last:', last, 'need update:', needUpdateLastPageQueue.length);
+        logger.info('pageLast:', pageLast);
 
 
-        crawler.update(last);
-        for(var i=1; i<=6; i++){
+        //Update last 6 page.
+        for (var i = 0; i <= 6; i++) {
           var lastSix = 'thread-50247-' + (pageLast - i) + '-1.html';
-          logger.debug('add lastSix:',lastSix);
+          logger.debug('add lastSix:', lastSix);
           crawler.update(lastSix);
         }
 
+        //Update last page number and link.
         qicai.watchPage(last, function (href, hrefText) {
           logger.info('Found last page', href, hrefText);
 
           var lastPageNumber = parseInt(href.split('-')[2], 10);
-          logger.info('New page number:', lastPageNumber,'Old page number:', pageLast);
+          logger.info('New page number:', lastPageNumber, 'Old page number:', pageLast);
 
           if (lastPageNumber > pageLast) {
             logger.info('Replace old last page');
