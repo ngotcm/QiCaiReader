@@ -42,7 +42,7 @@ exports.parseLinks = function ($, push) {
 
 var attachmentFilePath = function (uriObj) {
   //new Buffer(str, 'base64')).toString()
-  console.log('aid:', url.format(uriObj));
+  logger.debug('aid:', url.format(uriObj));
   var realIdArray = new Buffer(uriObj.query.aid, 'base64').toString().split('|');
   assert(realIdArray.length > 0);
   //console.log('realId.array: ', realIdArray);
